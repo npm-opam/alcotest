@@ -1,0 +1,57 @@
+{
+    "name": "alcotest-actual",
+    "exportedEnvVars": {
+        "alcotest_installed": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "true"
+        },
+        "alcotest_version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "0.6.0"
+        },
+        "FINDLIB": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib"
+        },
+        "version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "0.6.0"
+        },
+        "alcotest_enable": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "enable"
+        },
+        "PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/bin"
+        }
+    },
+    "version": "0.6.0",
+    "dependencies": {
+        "@opam-alpha/astring": "*",
+        "@opam-alpha/fmt": "*",
+        "@opam-alpha/topkg": "*",
+        "@opam-alpha/ocamlfind": "*",
+        "dependency-env": "https://github.com/npm-ml/dependency-env.git",
+        "substs": "https://github.com/yunxing/substs.git",
+        "@opam-alpha/ocamlbuild": "*",
+        "@opam-alpha/result": "*",
+        "@opam-alpha/cmdliner": "*",
+        "nopam": "https://github.com/yunxing/nopam.git",
+        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git"
+    },
+    "scripts": {
+        "postinstall": "eval $(dependencyEnv) && nopam && ocaml pkg/pkg.ml build --pinned false && (opam-installer --prefix=$opam_prefix || true)"
+    },
+    "peerDependencies": {
+        "@opam-alpha/ocaml": ">= 4.01.0"
+    }
+}
